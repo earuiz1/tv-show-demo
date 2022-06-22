@@ -14,15 +14,18 @@
 </head>
 <body>
 <!-- Create a navbar  -->
-  <nav class="navbar navbar-dark bg-dark" id="nav">
-    <div class="container-fluid">
-      <a class="navbar-brand">Tv Shows</a>
-      <form id="form" class="d-flex" role="search">
-        <input id="input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button id='button' class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+<nav class="navbar navbar-dark bg-dark" id="nav">
+  <div class="container-fluid">
+    <a class="navbar-brand">Tv Shows</a>
+    <form id="form" class="d-flex" role="search">
+      <input id="input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button id='button' class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<!-- Create a div that will hold all cards from the fecthed data -->
+<div class="row row-cols-1 row-cols-md-6 g-4" id="card-group"></div>
 
 </body>
 <script src="app.js"></script>
