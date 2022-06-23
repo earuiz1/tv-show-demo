@@ -25,8 +25,23 @@ const load_TV_Shows = async (user_input) => {
     }
 }
 
+//Remove HTML tags
+const removeTags = (str) => {
+    if (str === null || str === '') {
+        return false;
+    }
+    else{
+        str = str.toString();
+        return str.replace( /(<([^>]+)>)/ig, '');
+    }
+}
+
+
 //Create a function that will update the DOM 
 const updateDOM = (api_img, api_name, api_desc) => {
+
+    //Trim the description so it can only show 150 characters and add ... to the end of the string
+    let trimmedString = api_desc.replace(/^(.{150}[^\s]*).*/, "$1") + '...'; 
 
     //Create a card dynamically with the data fecthed from the api
     const div_col = document.createElement('div');
@@ -59,9 +74,8 @@ const updateDOM = (api_img, api_name, api_desc) => {
 
     const p = document.createElement('p');
     p.classList.add('card-text');
-    p.innerText = api_desc;
+    p.innerText = removeTags(trimmedString);
   
-
     h5.after(p);
 }
 
