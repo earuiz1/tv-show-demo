@@ -4,6 +4,10 @@ const button = document.querySelector("#button");
 const input = document.querySelector("#input");
 const body = document.querySelector("body");
 
+const modal_title = document.querySelector("#modal-title");
+const modal_image = document.querySelector("#modal-image");
+const modal_summary = document.querySelector("#modal-summary");
+
 //Create an array that will be populated with objects
 let showArray = [];
 
@@ -25,6 +29,7 @@ const load_TV_Shows = async (user_input) => {
       let obj = {};
 
       //Assign values to the object
+      obj.id = re.show.id;
       obj.name = re.show.name;
       obj.language = re.show.language;
       obj.imageSrc = re.show.image.medium;
@@ -73,6 +78,7 @@ const updateDOM = (showArray) => {
 
     const div_card = document.createElement("div");
     div_card.classList.add("card", "h-100");
+    div_card.id = sh.id;
 
     div_col.append(div_card);
 
@@ -115,6 +121,19 @@ const updateDOM = (showArray) => {
   }
 };
 
+const updateModal = (Event_id) => {
+    console.log('Inside updateModal', Event_id);
+
+
+    for(let show of showArray){
+        if(Event_id == show.id){
+            modal_title.innerText = show.name;
+            modal_image.src = show.imageSrc;
+            modal_summary.innerText = removeTags(show.summary);
+        }
+    } 
+}
+
 //If search button is clicked
 button.addEventListener("click", (e) => {
   //console.log('Pressed');
@@ -138,3 +157,14 @@ button.addEventListener("click", (e) => {
     load_TV_Shows(input.value);
   }
 });
+
+card_group.addEventListener('click', (Event) => {
+    console.log('Pressed');
+    
+    //Check the id of the card just clicked
+    console.log(Event.target.parentNode.parentNode.id);
+
+    //Update Modal
+    updateModal(Event.target.parentNode.parentNode.id);
+})
+
