@@ -40,9 +40,6 @@ const removeTags = (str) => {
 //Create a function that will update the DOM 
 const updateDOM = (api_img, api_name, api_desc) => {
 
-    //Trim the description so it can only show 150 characters and add ... to the end of the string
-    let trimmedString = api_desc.replace(/^(.{150}[^\s]*).*/, "$1") + '...'; 
-
     //Create a card dynamically with the data fecthed from the api
     const div_col = document.createElement('div');
     div_col.classList.add('col');
@@ -74,9 +71,22 @@ const updateDOM = (api_img, api_name, api_desc) => {
 
     const p = document.createElement('p');
     p.classList.add('card-text');
-    p.innerText = removeTags(trimmedString);
+    p.innerText = removeTags(api_desc);
   
     h5.after(p);
+
+    const footer = document.createElement('div');
+    footer.classList.add('footer');
+    
+    card_body.after(footer);
+    
+    const button = document.createElement('button');
+    button.classList.add('stretched-link','btn','btn-secondary');
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target','#exampleModal');
+    button.innerText = 'Learn more';
+    
+    footer.append(button);
 }
 
 //If search button is clicked
