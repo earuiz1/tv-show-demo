@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!--Bootstrap CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
-    />
 
-    <link rel="stylesheet" href="./index.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!--Bootstrap CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
 
-    <title>TV Show Demo</title>
-  </head>
-  <body>
-    <!-- Create a navbar  -->
-    <nav class="navbar navbar-dark bg-dark" id="nav">
-      <div class="container-fluid">
-        <a class="navbar-brand">Tv Shows</a>
-        <form id="form" class="d-flex" role="search">
-          <input
-            id="input"
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button id="button" class="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-    </nav>
+  <link rel="stylesheet" href="./index.css" />
 
-    <!-- Create a div that will hold all cards from the fecthed data -->
-    <div class="row row-cols-1 row-cols-md-6 g-4" id="card-group"></div>
+  <title>TV Show Demo</title>
+</head>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="modal-title"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-title">Modal title</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
+<body>
+  <!-- Create a navbar  -->
+  <nav class="navbar navbar-dark bg-dark" id="nav">
+    <div class="container-fluid">
+      <a class="navbar-brand">Tv Shows</a>
+      <form id="form" class="d-flex" role="search">
+        <input id="input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button id="button" class="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- <div class="search-box">
+    <form id="searchBox_form" role="search">
+      <input id="searchBox_input" type="search" placeholder="Search" aria-label="Search" />
+      <button id="searchBox_button" class="btn btn-primary" type="submit">
+        Search
+      </button>
+    </form>
+  </div> -->
+
+  <!-- Create a div that will hold all cards from the fecthed data -->
+  <div class="row row-cols-1 row-cols-md-6 g-4" id="card-group"></div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-inner-1">
             <div class="modal-image">
               <img id="modal-image" src="" alt="">
             </div>
-            <div class="modal-summary" id="modal-summary"></div>
+            <div class="modal-inner-2">
+              <div class="modal-language">
+                <p id="p-language"></p>
+              </div>
+              <div class="modal-premiered">
+                <p id="p-premiered"></p>
+              </div>
+              <div class="modal-status">
+                <p id="p-status"></p>
+              </div>
+              <div class="modal-genres">
+                <p id="p-genres"></p>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+          <div class="modal-summary">
+            <p id="modal-summary"> </p>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
-  </body>
-  <script src="app.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</body>
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

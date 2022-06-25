@@ -13,6 +13,14 @@
     font-weight: bold;
 }
 
+.search-box{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid black;
+}
+
 .col{
     display: flex;
 }
@@ -20,6 +28,7 @@
 .card{
     display: flex;
     width: 100%;
+    box-shadow: -1px 10px 20px 6px rgba(0, 0, 0, 0.58);
 }
 
 .card-text{
@@ -46,3 +55,25 @@
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
 }
+
+#modal-title{
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.modal-inner-1{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1.5rem;
+}
+
+.modal-inner-2{
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+#modal-summary{
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+

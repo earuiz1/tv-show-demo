@@ -7,6 +7,10 @@ const body = document.querySelector("body");
 const modal_title = document.querySelector("#modal-title");
 const modal_image = document.querySelector("#modal-image");
 const modal_summary = document.querySelector("#modal-summary");
+const modal_p_language = document.querySelector("#p-language");
+const modal_p_premiered = document.querySelector("#p-premiered");
+const modal_p_genres = document.querySelector("#p-genres");
+const modal_p_status = document.querySelector("#p-status");
 
 //Create an array that will be populated with objects
 let showArray = [];
@@ -36,6 +40,7 @@ const load_TV_Shows = async (user_input) => {
       obj.genres = re.show.genres;
       obj.premiered = re.show.premiered;
       obj.summary = re.show.summary;
+      obj.status = re.show.status;
       showArray.push(obj);
 
       //updateDOM(re.show.image.medium, re.show.name, re.show.summary);
@@ -127,7 +132,16 @@ const updateModal = (Event_id) => {
 
     for(let show of showArray){
         if(Event_id == show.id){
+            if(show.genres.length === 0){
+                modal_p_genres.innerText = `Genres: N/A `;
+            }else{
+                modal_p_genres.innerText = `Genres: ${show.genres} `;
+            }
+
             modal_title.innerText = show.name;
+            modal_p_language.innerText = `Language: ${show.language}`;
+            modal_p_premiered.innerText = `Air Date: ${show.premiered}`;
+            modal_p_status.innerText = `Air Status: ${show.status}`;
             modal_image.src = show.imageSrc;
             modal_summary.innerText = removeTags(show.summary);
         }
