@@ -11,6 +11,7 @@ const modal_p_language = document.querySelector("#p-language");
 const modal_p_premiered = document.querySelector("#p-premiered");
 const modal_p_genres = document.querySelector("#p-genres");
 const modal_p_status = document.querySelector("#p-status");
+const modal_p_runTime = document.querySelector("#p-runTime");
 
 //Create an array that will be populated with objects
 let showArray = [];
@@ -24,23 +25,50 @@ const load_TV_Shows = async (user_input) => {
     console.log("Data", response.data);
 
     for (let re of response.data) {
-      if (re.show.image === null || re.show.summary === null) {
-        console.log("Null");
-        continue;
-      }
 
       //Create an object
       let obj = {};
 
+      if (re.show.image === null) {
+       console.log('Image null');
+       continue;
+    }
+
+      if (re.show.summary === null) {
+        console.log('Summary null');
+        re.show.summary = "N/A";
+      }
+
+      if (re.show.averageRuntime === null) {
+        console.log('averageRunTime null');
+        re.show.averageRuntime = "N/A";
+      }
+
+      if (re.show.genres.length === 0) {
+        console.log('Genres Empty');
+        re.show.genres = "N/A";
+      }
+
+      if (re.show.premiered === null) {
+        console.log('Air Date null');
+        re.show.premiered = "N/A";
+      }
+
+      if (re.show.premiered === null) {
+        console.log('Air Date null');
+        re.show.premiered = "N/A";
+      }
+
       //Assign values to the object
+      obj.imageSrc = re.show.image.medium;
       obj.id = re.show.id;
       obj.name = re.show.name;
       obj.language = re.show.language;
-      obj.imageSrc = re.show.image.medium;
       obj.genres = re.show.genres;
       obj.premiered = re.show.premiered;
       obj.summary = re.show.summary;
       obj.status = re.show.status;
+      obj.runTime = re.show.averageRuntime;
       showArray.push(obj);
 
       //updateDOM(re.show.image.medium, re.show.name, re.show.summary);
@@ -127,26 +155,22 @@ const updateDOM = (showArray) => {
 };
 
 const updateModal = (Event_id) => {
-    console.log('Inside updateModal', Event_id);
+  console.log("Inside updateModal", Event_id);
 
-
-    for(let show of showArray){
-        if(Event_id == show.id){
-            if(show.genres.length === 0){
-                modal_p_genres.innerText = `Genres: N/A `;
-            }else{
-                modal_p_genres.innerText = `Genres: ${show.genres} `;
-            }
-
-            modal_title.innerText = show.name;
-            modal_p_language.innerText = `Language: ${show.language}`;
-            modal_p_premiered.innerText = `Air Date: ${show.premiered}`;
-            modal_p_status.innerText = `Air Status: ${show.status}`;
-            modal_image.src = show.imageSrc;
-            modal_summary.innerText = removeTags(show.summary);
-        }
-    } 
-}
+  for (let show of showArray) {
+    if (Event_id == show.id) {
+        
+      modal_title.innerText = show.name;
+      modal_p_language.innerText = `Language: ${show.language}`;
+      modal_p_premiered.innerText = `Air Date: ${show.premiered}`;
+      modal_p_genres.innerText = `Genres: ${show.genres} `;
+      modal_p_status.innerText = `Air Status: ${show.status}`;
+      modal_p_runTime.innerText = `Duration(episode): ${show.runTime.toString()} minutes`;
+      modal_image.src = show.imageSrc;
+      modal_summary.innerText = removeTags(show.summary);
+    }
+  }
+};
 
 //If search button is clicked
 button.addEventListener("click", (e) => {
@@ -172,13 +196,12 @@ button.addEventListener("click", (e) => {
   }
 });
 
-card_group.addEventListener('click', (Event) => {
-    console.log('Pressed');
-    
-    //Check the id of the card just clicked
-    console.log(Event.target.parentNode.parentNode.id);
+card_group.addEventListener("click", (Event) => {
+  console.log("Pressed");
 
-    //Update Modal
-    updateModal(Event.target.parentNode.parentNode.id);
-})
+  //Check the id of the card just clicked
+  console.log(Event.target.parentNode.parentNode.id);
 
+  //Update Modal
+  updateModal(Event.target.parentNode.parentNode.id);
+});

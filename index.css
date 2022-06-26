@@ -70,6 +70,7 @@
 .modal-inner-2{
     font-weight: 300;
     font-size: 0.8rem;
+    line-break: anywhere;
 }
 
 #modal-summary{
@@ -77,3 +78,10 @@
     font-size: 0.8rem;
 }
 
+#search-box{
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    border: 2px solid black;
+    padding: 1rem;
+}
