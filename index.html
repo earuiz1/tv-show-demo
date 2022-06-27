@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,14 +19,13 @@
 
   <title>TV Show Demo</title>
 </head>
-
 <body>
   <!-- Create a navbar  -->
   <nav class="navbar navbar-dark bg-dark" id="nav">
     <div class="container-fluid">
       <a class="navbar-brand">Tv Shows</a>
-      <form id="form" class="d-flex" role="search" >
-        <input id="input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required/>
+      <form id="form" class="d-flex" role="search">
+        <input id="input" class="form-control me-2" type="search" aria-label="Search" required />
         <button id="button" class="btn btn-primary" type="submit">
           Search
         </button>
@@ -35,17 +33,24 @@
     </div>
   </nav>
 
-  <!-- <div class="search-box">
-    <form id="searchBox_form" role="search">
-      <input id="searchBox_input" type="search" placeholder="Search" aria-label="Search" />
-      <button id="searchBox_button" class="btn btn-primary" type="submit">
-        Search
-      </button>
-    </form>
-  </div> -->
-
+<div class="container">
+  <div class="row" novalidate>
+    <div class="col-md-8">
+      <h1>What show are you looking for?</h1>
+        <form id='searchBox_form' class="search">
+          <input type="text" id='searchBox_input' class="form-control" required/>
+          <i class="fa fa-search"></i>
+          <button id='searchBox_button' type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <div class="invalid-feedback">
+          Please enter a valid show name!
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Create a div that will hold all cards from the fecthed data -->
-  <div class="row row-cols-1 row-cols-md-6 g-4" id="card-group"></div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-4" id="card-group"></div>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -93,5 +98,4 @@
 </body>
 <script src="app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
 </html>

@@ -1,8 +1,14 @@
 //Declare varaiables
 const card_group = document.querySelector("#card-group");
+const form = document.querySelector("#form");
 const button = document.querySelector("#button");
 const input = document.querySelector("#input");
 const body = document.querySelector("body");
+
+const searchBox_form = document.querySelector("#searchBox_form");
+const searchBox_input = document.querySelector("#searchBox_input");
+const searchBox_button = document.querySelector("#searchBox_button");
+const container = document.querySelector(".container");
 
 const modal_title = document.querySelector("#modal-title");
 const modal_image = document.querySelector("#modal-image");
@@ -12,6 +18,11 @@ const modal_p_premiered = document.querySelector("#p-premiered");
 const modal_p_genres = document.querySelector("#p-genres");
 const modal_p_status = document.querySelector("#p-status");
 const modal_p_runTime = document.querySelector("#p-runTime");
+
+form.style.visibility = "hidden";
+
+input.value = " ";
+searchBox_input.value = " ";
 
 //Create an array that will be populated with objects
 let showArray = [];
@@ -25,41 +36,41 @@ const load_TV_Shows = async (user_input) => {
     console.log("Data", response.data);
 
     for (let re of response.data) {
-
       //Create an object
       let obj = {};
 
       if (re.show.image === null) {
-       console.log('Image null');
-       continue;
-    }
+        console.log("Image null");
+        continue;
+      }
 
       if (re.show.summary === null) {
-        console.log('Summary null');
+        console.log("Summary null");
         re.show.summary = "N/A";
       }
 
       if (re.show.averageRuntime === null) {
-        console.log('averageRunTime null');
+        console.log("averageRunTime null");
         re.show.averageRuntime = "N/A";
       }
 
       if (re.show.genres.length === 0) {
-        console.log('Genres Empty');
+        console.log("Genres Empty");
         re.show.genres = "N/A";
       }
 
       if (re.show.premiered === null) {
-        console.log('Air Date null');
+        console.log("Air Date null");
         re.show.premiered = "N/A";
       }
 
       if (re.show.premiered === null) {
-        console.log('Air Date null');
+        console.log("Air Date null");
         re.show.premiered = "N/A";
       }
 
       //Assign values to the object
+      //Optimized obj
       obj.imageSrc = re.show.image.medium;
       obj.id = re.show.id;
       obj.name = re.show.name;
@@ -102,6 +113,10 @@ const removeShows = () => {
 //Update DOM
 const updateDOM = (showArray) => {
   console.log("Inside Update", showArray);
+
+  form.style.visibility = "visible";
+
+  container.remove();
 
   for (let sh of showArray) {
     const div_col = document.createElement("div");
@@ -159,7 +174,6 @@ const updateModal = (Event_id) => {
 
   for (let show of showArray) {
     if (Event_id == show.id) {
-        
       modal_title.innerText = show.name;
       modal_p_language.innerText = `Language: ${show.language}`;
       modal_p_premiered.innerText = `Air Date: ${show.premiered}`;
@@ -177,22 +191,27 @@ button.addEventListener("click", (e) => {
   //console.log('Pressed');
   e.preventDefault();
 
-  //Check if card group is empty, if so
-  if (card_group.childNodes.length === 0) {
-    //Load shows according to the user input
-    console.log("Inside if");
-    load_TV_Shows(input.value);
+  if (input.value !== " ") {
+    //Check if card group is empty, if so
+    if (card_group.childNodes.length === 0) {
+      //Load shows according to the user input
+      console.log("Inside if");
+      load_TV_Shows(input.value);
+    } else {
+      console.log("Inside else");
+
+      //Clear the array of objects
+      showArray = [];
+
+      //Remove previous shows
+      removeShows();
+
+      //Load new shows
+      load_TV_Shows(input.value);
+      // load_TV_Shows(searchBox_input.value);
+    }
   } else {
-    console.log("Inside else");
-
-    //Clear the array of objects
-    showArray = [];
-
-    //Remove previous shows
-    removeShows();
-
-    //Load new shows
-    load_TV_Shows(input.value);
+    console.log("Empty");
   }
 });
 
@@ -204,4 +223,14 @@ card_group.addEventListener("click", (Event) => {
 
   //Update Modal
   updateModal(Event.target.parentNode.parentNode.id);
+});
+
+searchBox_button.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (searchBox_input.value !== " ") {
+    load_TV_Shows(searchBox_input.value);
+  } else {
+    console.log("Empty");
+  }
 });

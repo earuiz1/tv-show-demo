@@ -1,87 +1,137 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&family=Inconsolata&family=Oleo+Script+Swash+Caps&family=Patrick+Hand&display=swap');
+
+* {
+    /* font-family: Roboto, sans-serif; */
+    font-family: 'Fira Sans Condensed', sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-#nav{
-    margin-bottom: 1.5rem;
+/* html{
+    width: 100%;
+    height: 100%;
+} */
+
+body {
+    background-image: linear-gradient(180deg, rgba(212, 212, 212, 1) 0%, rgba(9, 45, 103, 0.88) 100%);
+    background-repeat: no-repeat;
 }
 
-#nav a{
+
+#nav a {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.search-box{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    border: 1px solid black;
-}
-
-.col{
-    display: flex;
-}
-
-.card{
+.card {
     display: flex;
     width: 100%;
-    box-shadow: -1px 10px 20px 6px rgba(0, 0, 0, 0.58);
+    box-shadow: -1px 10px 20px 6px rgba(0, 0, 0, 0.353);
 }
 
-.card-text{
+.card-text {
     font-size: 0.8rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /*No of lines after which the ellipsis needs to be added*/
+    -webkit-line-clamp: 3;
+    /*No of lines after which the ellipsis needs to be added*/
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-#card-group{
+#card-group {
     display: flex;
     margin-left: auto;
-    margin-right: auto;  
+    margin-right: auto;
+    margin-top: 1rem;
 }
 
-.footer{
+.footer {
     display: flex;
 }
 
-.footer button{
+.footer button {
     display: flex;
     flex-grow: 1;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
+    background-color: #000;
 }
 
-#modal-title{
+
+#modal-title {
     font-weight: bold;
     font-size: 1.8rem;
 }
 
-.modal-inner-1{
+.modal-inner-1 {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 1.5rem;
 }
 
-.modal-inner-2{
+.modal-inner-2 {
     font-weight: 300;
     font-size: 0.8rem;
     line-break: anywhere;
 }
 
-#modal-summary{
+#modal-summary {
     font-weight: 300;
     font-size: 0.8rem;
 }
 
-#search-box{
+.container .row {
     display: flex;
-    width: 100%;
-    max-width: 800px;
-    border: 2px solid black;
-    padding: 1rem;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search {
+    position: relative;
+    box-shadow: 3px 7px 19px 6px rgb(0 0 0 / 27%)
+}
+
+div.container > div > div > h1{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: white;
+}
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #292424;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid rgb(15, 124, 197);
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue;
+}
+
+@media screen and (max-width: 568px) {
+    /* place here CSS targeted at iPhones and smaller screen sizes, not iPads */
+
+    .modal-inner-2 {
+        font-weight: 300;
+        font-size: 0.8rem;
+        line-break: anywhere;
+        margin-left: 0.4rem;
+    }
+    
 }
