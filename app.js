@@ -20,9 +20,8 @@ const modal_p_status = document.querySelector("#p-status");
 const modal_p_runTime = document.querySelector("#p-runTime");
 
 form.style.visibility = "hidden";
-
-input.value = " ";
-searchBox_input.value = " ";
+searchBox_button.disabled = true;
+button.disabled = true;
 
 //Create an array that will be populated with objects
 let showArray = [];
@@ -70,7 +69,6 @@ const load_TV_Shows = async (user_input) => {
       }
 
       //Assign values to the object
-      //Optimized obj
       obj.imageSrc = re.show.image.medium;
       obj.id = re.show.id;
       obj.name = re.show.name;
@@ -81,8 +79,7 @@ const load_TV_Shows = async (user_input) => {
       obj.status = re.show.status;
       obj.runTime = re.show.averageRuntime;
       showArray.push(obj);
-
-      //updateDOM(re.show.image.medium, re.show.name, re.show.summary);
+      
     }
     console.log("Inside Load", showArray);
 
@@ -186,20 +183,28 @@ const updateModal = (Event_id) => {
   }
 };
 
-//If search button is clicked
-button.addEventListener("click", (e) => {
-  //console.log('Pressed');
+//Check input
+input.addEventListener('input', (e) =>{
   e.preventDefault();
 
-  if (input.value !== " ") {
-    //Check if card group is empty, if so
-    if (card_group.childNodes.length === 0) {
-      //Load shows according to the user input
-      console.log("Inside if");
-      load_TV_Shows(input.value);
-    } else {
-      console.log("Inside else");
+  if(input.value.length === 0) {
+    button.disabled = true;
+  }
+  else if(input.value.length > 0) {
+    button.disabled = false;
+  }
+})
 
+//If search button is clicked
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+
+    //If there are no shows, load new ones
+    if (card_group.childNodes.length === 0) {
+      load_TV_Shows(input.value);
+    }
+    //If there are shows already loaded, clear the array, remove the previous shows and load new ones
+    else {
       //Clear the array of objects
       showArray = [];
 
@@ -208,11 +213,7 @@ button.addEventListener("click", (e) => {
 
       //Load new shows
       load_TV_Shows(input.value);
-      // load_TV_Shows(searchBox_input.value);
     }
-  } else {
-    console.log("Empty");
-  }
 });
 
 card_group.addEventListener("click", (Event) => {
@@ -225,12 +226,17 @@ card_group.addEventListener("click", (Event) => {
   updateModal(Event.target.parentNode.parentNode.id);
 });
 
+//Check the input 
+searchBox_input.addEventListener('input', () => {
+  if(searchBox_input.value.length === 0) {
+    searchBox_button.disabled = true;
+  }
+  else if(searchBox_input.value.length > 0) {
+    searchBox_button.disabled = false;
+  }
+})
+
 searchBox_button.addEventListener("click", (e) => {
   e.preventDefault();
-
-  if (searchBox_input.value !== " ") {
-    load_TV_Shows(searchBox_input.value);
-  } else {
-    console.log("Empty");
-  }
+  load_TV_Shows(searchBox_input.value);
 });

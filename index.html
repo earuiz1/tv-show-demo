@@ -21,12 +21,12 @@
 </head>
 <body>
   <!-- Create a navbar  -->
-  <nav class="navbar navbar-dark bg-dark" id="nav">
+  <nav class="navbar sticky-top" id="nav">
     <div class="container-fluid">
       <a class="navbar-brand">Tv Shows</a>
       <form id="form" class="d-flex" role="search">
         <input id="input" class="form-control me-2" type="search" aria-label="Search" required />
-        <button id="button" class="btn btn-primary" type="submit">
+        <button id="button" class="btn" type="submit">
           Search
         </button>
       </form>
@@ -34,17 +34,14 @@
   </nav>
 
 <div class="container">
-  <div class="row" novalidate>
+  <div class="row">
     <div class="col-md-8">
       <h1>What show are you looking for?</h1>
         <form id='searchBox_form' class="search">
           <input type="text" id='searchBox_input' class="form-control" required/>
           <i class="fa fa-search"></i>
-          <button id='searchBox_button' type="submit" class="btn btn-primary">Search</button>
+          <button id='searchBox_button' type="submit" class="btn">Search</button>
         </form>
-        <div class="invalid-feedback">
-          Please enter a valid show name!
-        </div>
       </div>
     </div>
   </div>
